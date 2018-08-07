@@ -46,8 +46,8 @@
     }
 
     .hand {
-      width:50%;
-      height:6px;
+      width: 50%;
+      height: 8px;
       background:black;
       position: absolute;
       top: 50%;
@@ -56,19 +56,30 @@
       transition: all 0.05s;
       transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
+
+    .hour-hand {
+      height: 10px;
+      width: 30%;
+      margin-left: 20%;
+    }
+
+    .second-hand {
+      background: red;
+      height:6px;
+    }
   </style>
 
   <div class="clock">
     <div class="clock-face">
       <div class="hand hour-hand"></div>
-      <div class="hand min-hand"></div>
+      <div class="hand minute-hand"></div>
       <div class="hand second-hand"></div>
     </div>
   </div>
 
   <script>
     const secondHand = document.querySelector(".second-hand");
-    const minuteHand = document.querySelector(".min-hand");
+    const minuteHand = document.querySelector(".minute-hand");
     const hourHand = document.querySelector(".hour-hand");
 
     startWatch();

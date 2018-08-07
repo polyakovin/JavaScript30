@@ -5,17 +5,6 @@
   <title>JS + CSS Clock</title>
 </head>
 <body>
-
-
-    <div class="clock">
-      <div class="clock-face">
-        <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
-        <div class="hand second-hand"></div>
-      </div>
-    </div>
-
-
   <style>
     html {
       background:#018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
@@ -61,14 +50,60 @@
       height:6px;
       background:black;
       position: absolute;
-      top:50%;
+      top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
-
   </style>
 
+  <div class="clock">
+    <div class="clock-face">
+      <div class="hand hour-hand"></div>
+      <div class="hand min-hand"></div>
+      <div class="hand second-hand"></div>
+    </div>
+  </div>
+
   <script>
+    const secondHand = document.querySelector(".second-hand");
+    const minuteHand = document.querySelector(".min-hand");
+    const hourHand = document.querySelector(".hour-hand");
 
+    startWatch();
 
+    function startWatch() {
+      const secondInterval = 1000;
+      setInterval(setTime, secondInterval)
+    }
+
+    function setTime() {
+      const baseDegree = 90;
+      const now = new Date();
+
+      setSecondHand();
+      setMinuteHand();
+      setHourHand();
+
+      function setSecondHand() {
+        const seconds = now.getSeconds();
+        const secondsDegrees = seconds*6 + baseDegree;
+        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      }
+
+      function setMinuteHand() {
+        const minutes = now.getMinutes();
+        const minutesDegrees = minutes*6 + baseDegree;
+        minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+      }
+
+      function setHourHand() {
+        const hours = now.getHours();
+        const hoursDegrees = hours*30 + baseDegree;
+        hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+      }
+    }
   </script>
 </body>
 </html>

@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <base href="/JavaScript30/01 - JavaScript Drum Kit/">
+  <!-- <base href="/JavaScript30/01 - JavaScript Drum Kit/"> -->
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -58,10 +56,42 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
+  <script>
+    let keyCode;
+    window.addEventListener('keydown', hitDrum)
+    removeTransitions();
 
-</script>
+    function hitDrum(event) {
+      keyCode = event.keyCode;
+      playSound();
+      animateButton();
+    }
 
+    function playSound() {
+      const sound = document.querySelector(`audio[data-key="${keyCode}"]`);
+      if (sound) {
+        sound.currentTime = 0;
+        sound.play();
+      }
+    }
 
+    function animateButton() {
+      const button = document.querySelector(`.key[data-key="${keyCode}"]`);
+      if (button) {
+        button.classList.add('playing');
+      }
+    }
+
+    function removeTransitions() {
+      const keys = Array.from(document.querySelectorAll('.key'));
+      keys.forEach(key => {
+        key.addEventListener('transitionend', event => {
+          if (event.propertyName === 'transform') {
+            event.target.classList.remove('playing');
+          }
+        });
+      });
+    }
+  </script>
 </body>
 </html>

@@ -18,29 +18,57 @@
     }
 
     // Regular
+    console.log('Hi!');
 
     // Interpolated
+    console.log('Hi, %s!', 'iGor');
 
     // Styled
+    console.log('%c Hi!', 'font-size: 2rem; color: red');
 
     // warning!
+    console.warn('Hi!');
 
     // Error :|
+    console.error('Hi!');
 
     // Info
+    console.info('Hi!');
 
     // Testing
+    console.assert(false, 'Hi!');
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    console.dir(document.querySelector('p'));
 
     // Grouping together
+    dogs.forEach(dog => {
+      // console.group(dog.name);
+      console.groupCollapsed(dog.name);
+      console.log(dog.name);
+      console.log(dog.age);
+      console.groupEnd(dog.name);
+    });
+    console.table(dogs);
 
     // counting
+    console.count('iGor');
+    console.count('iGor');
+    console.count('iGor');
+    console.count('iGor');
+    console.count('iGor');
 
     // timing
-
+    console.time('загрузка');
+    fetch('https://api.github.com/users/polyakovin')
+      .then(data => data.json())
+      .then(igor => {
+        console.log(igor);
+        console.timeEnd('загрузка');
+      });
   </script>
 </body>
 </html>

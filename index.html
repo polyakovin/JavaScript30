@@ -3,42 +3,90 @@
 <head>
   <base href="/JavaScript30/">
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <style>
+    .list-group-item:hover {
+      cursor: pointer;
+    }
+  </style>
   <title>JavaScript 30 Day Challenge</title>
 </head>
 <body>
-  <h1><a href="https://JavaScript30.com">JavaScript 30 Day Challenge</a></h1>
-  <h2>Реализация каждой задачи из курса</h2>
-  <ol>
-    <li><a href="01 - JavaScript Drum Kit">JavaScript Drum Kit</a></li>
-    <li><a href="02 - JS and CSS Clock">JS and CSS Clock</a></li>
-    <li><a href="03 - CSS Variables">CSS Variables</a></li>
-    <li><a href="04 - Array Cardio Day 1">Array Cardio Day 1</a></li>
-    <li><a href="05 - Flex Panel Gallery">Flex Panel Gallery</a></li>
-    <li><a href="06 - Type Ahead">Type Ahead</a></li>
-    <li><a href="07 - Array Cardio Day 2">Array Cardio Day 2</a></li>
-    <li><a href="08 - Fun with HTML5 Canvas">Fun with HTML5 Canvas</a></li>
-    <li><a href="09 - Dev Tools Domination">Dev Tools Domination</a></li>
-    <!-- <li><a href="10 - Hold Shift and Check Checkboxes">Hold Shift and Check Checkboxes</a></li> -->
-    <!-- <li><a href="11 - Custom Video Player">Custom Video Player</a></li> -->
-    <!-- <li><a href="12 - Key Sequence Detection">Key Sequence Detection</a></li> -->
-    <!-- <li><a href="13 - Slide in on Scroll">Slide in on Scroll</a></li> -->
-    <!-- <li><a href="14 - JavaScript References VS Copying">JavaScript References VS Copying</a></li> -->
-    <!-- <li><a href="15 - LocalStorage">LocalStorage</a></li> -->
-    <!-- <li><a href="16 - Mouse Move Shadow">Mouse Move Shadow</a></li> -->
-    <!-- <li><a href="17 - Sort Without Articles">Sort Without Articles</a></li> -->
-    <!-- <li><a href="18 - Adding Up Times with Reduce">Adding Up Times with Reduce</a></li> -->
-    <!-- <li><a href="19 - Webcam Fun">Webcam Fun</a></li> -->
-    <!-- <li><a href="20 - Speech Detection">Speech Detection</a></li> -->
-    <!-- <li><a href="21 - Geolocation">Geolocation</a></li> -->
-    <!-- <li><a href="22 - Follow Along Link Highlighter">Follow Along Link Highlighter</a></li> -->
-    <!-- <li><a href="23 - Speech Synthesis">Speech Synthesis</a></li> -->
-    <!-- <li><a href="24 - Sticky Nav">Sticky Nav</a></li> -->
-    <!-- <li><a href="25 - Event Capture, Propagation, Bubbling and Once">Event Capture, Propagation, Bubbling and Once</a></li> -->
-    <!-- <li><a href="26 - Stripe Follow Along Nav">Stripe Follow Along Nav</a></li> -->
-    <!-- <li><a href="27 - Click and Drag">Click and Drag</a></li> -->
-    <!-- <li><a href="28 - Video Speed Controller">Video Speed Controller</a></li> -->
-    <!-- <li><a href="29 - Countdown Timer">Countdown Timer</a></li> -->
-    <!-- <li><a href="30 - Whack A Mole">Whack A Mole</a></li> -->
-  </ol>
+  <div class="container">
+    <h1><a href="https://JavaScript30.com">JavaScript 30 Day Challenge</a></h1>
+    <h2>Реализация каждой задачи из курса</h2>
+
+    <ol id="tasksList" class="list-group"></ol>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script>
+    const tasks = [
+      'JavaScript Drum Kit',
+      'JS and CSS Clock',
+      'CSS Variables',
+      'Array Cardio Day 1',
+      'Flex Panel Gallery',
+      'Type Ahead',
+      'Array Cardio Day 2',
+      'Fun with HTML5 Canvas',
+      'Dev Tools Domination',
+      // 'Hold Shift and Check Checkboxes',
+      // 'Custom Video Player',
+      // 'Key Sequence Detection',
+      // 'Slide in on Scroll',
+      // 'JavaScript References VS Copying',
+      // 'LocalStorage',
+      // 'Mouse Move Shadow',
+      // 'Sort Without Articles',
+      // 'Adding Up Times with Reduce',
+      // 'Webcam Fun',
+      // 'Speech Detection',
+      // 'Geolocation',
+      // 'Follow Along Link Highlighter',
+      // 'Speech Synthesis',
+      // 'Sticky Nav',
+      // 'Event Capture, Propagation, Bubbling and Once',
+      // 'Stripe Follow Along Nav',
+      // 'Click and Drag',
+      // 'Video Speed Controller',
+      // 'Countdown Timer',
+      // 'Whack A Mole'
+    ];
+
+    updateTasksList();
+    delegateLiToA();
+
+    function updateTasksList() {
+      const tasksList = document.getElementById('tasksList');
+      let html = '';
+      tasks.forEach((task, i) => {
+        let number = i + 1;
+        if (i < 9) {
+          number = '0' + number
+        }
+
+        html += `
+          <li class="list-group-item list-group-item-action">
+            <a href="${number} - ${task}">${number} – ${task}</a>
+          </li>`;
+      });
+      tasksList.innerHTML = html;
+    }
+
+    function delegateLiToA() {
+      const lis = document.querySelectorAll('li');
+      lis.forEach(li => {
+        li.addEventListener('click', () => {
+          const a = li.querySelector('a');
+          const ref = a.attributes.href.value;
+          // console.log(ref);
+          location.href = ref;
+        });
+      });
+    }
+  </script>
 </body>
 </html>

@@ -6,7 +6,6 @@
 </head>
 <body>
   <style>
-
     html {
       font-family: sans-serif;
       background:#ffc600;
@@ -50,8 +49,6 @@
       font-weight: 200;
       border-left: 1px solid #D1E2FF;
     }
-
-
   </style>
    <!--
    The following is a common layout you would see in an email client.
@@ -98,7 +95,25 @@
     </div>
   </div>
 
-<script>
-</script>
+  <script>
+    const checkboxes = document.querySelectorAll('.inbox input');
+    let lastIndex = -1;
+
+    checkboxes.forEach((checkbox, currentIndex) => {
+      checkbox.addEventListener('click', checkBetween);
+
+      function checkBetween(e) {
+        if (lastIndex >= 0 && e.shiftKey  && this.checked) {
+          const increment = currentIndex < lastIndex ? 1 : -1;
+
+          for (let i = currentIndex; i !== lastIndex; i += increment) {
+            checkboxes[i].checked = true;
+          }
+        }
+
+        lastIndex = currentIndex;
+      }
+    })
+  </script>
 </body>
 </html>

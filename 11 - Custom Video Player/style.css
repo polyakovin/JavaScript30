@@ -18,7 +18,7 @@ body {
   justify-content: center;
 }
 
-.player {
+#player {
   max-width:750px;
   border:5px solid rgba(0,0,0,0.2);
   box-shadow:0 0 20px rgba(0,0,0,0.2);
@@ -28,12 +28,12 @@ body {
 }
 
 /* This css is only applied when fullscreen is active. */
-.player:fullscreen {
+#player:fullscreen {
   max-width: none;
   width: 100%;
 }
 
-.player:-webkit-full-screen {
+#player:-webkit-full-screen {
   max-width: none;
   width: 100%;
 }
@@ -74,11 +74,11 @@ body {
   background:rgba(0,0,0,0.1);
 }
 
-.player:hover .player__controls {
+#player:hover .player__controls {
   transform: translateY(0);
 }
 
-.player:hover .progress {
+#player:hover .progress {
   height:15px;
 }
 
@@ -101,7 +101,7 @@ body {
   width:50%;
   background:#ffc600;
   flex:0;
-  flex-basis:50%;
+  flex-basis:0%;
 }
 
 /* unholy css to style input type="range" */

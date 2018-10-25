@@ -53,9 +53,9 @@
         const sliderInAt = window.scrollY + window.innerHeight - sliderImage.height/2;
         const imageBottom = sliderImage.offsetTop + sliderImage.height;
         const isHalfShown = sliderInAt > sliderImage.offsetTop;
-        const isNotScrolledPast = window.scrollY < imageBottom;
+        const isScrolledPast = window.scrollY > imageBottom;
 
-        if (isHalfShown && isNotScrolledPast) {
+        if (isHalfShown && !isScrolledPast) {
           sliderImage.classList.add('active');
         } else {
           sliderImage.classList.remove('active');

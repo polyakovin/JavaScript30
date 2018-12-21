@@ -7,10 +7,14 @@
 <body>
 
   <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
+    <h1 contenteditable>🔥Тень!</h1>
   </div>
 
   <style>
+  * {
+    cursor: url(http://cur.cursors-4u.net/nature/nat-11/nat1006.cur), auto !important;
+  }
+
   html {
     color:black;
     font-family: sans-serif;
@@ -29,12 +33,32 @@
   }
 
   h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    /*text-shadow: 10px 10px 0 rgba(0,0,0,1);*/
     font-size: 100px;
   }
   </style>
 
 <script>
+  const hero = document.querySelector('.hero');
+  const text = document.querySelector('h1');
+  const move = 50;
+
+  hero.addEventListener('mousemove', moveShadow);
+
+  function moveShadow(event) {
+    const { offsetWidth: width, offsetHeight: height } = hero;
+    let { offsetX: x, offsetY: y } = event;
+
+    if (this !== event.target) {
+      x += event.target.offsetLeft;
+      y += event.target.offsetTop;
+    }
+
+    const xMove = -Math.round(x/width*move - move/2);
+    const yMove = -Math.round(y/height*move - move/2);
+
+    text.style.textShadow = `${xMove}px ${yMove}px 0 rgba(0,0,0,.7)`;
+  }
 </script>
 </body>
 </html>

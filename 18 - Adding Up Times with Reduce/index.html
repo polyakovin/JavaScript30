@@ -182,6 +182,25 @@
     </li>
   </ul>
 <script>
+  const timeNodes = Array.from(document.querySelectorAll('.videos li'));
+
+  let seconds = timeNodes
+    .map(node => {
+      let time = node.dataset.time;
+      const [mins, secs] = time.split(':').map(parseFloat);
+      return mins*60 + secs;
+    })
+    .reduce((total, seconds) => {
+      return total + seconds;
+    });
+
+  const hours = Math.floor(seconds/3600);
+  seconds %= 3600;
+
+  const minutes = Math.floor(seconds/60);
+  seconds %= 60;
+
+  console.log(hours, minutes, seconds);
 </script>
 </body>
 </html>

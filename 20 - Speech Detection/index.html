@@ -3,16 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <title>Speech Detection</title>
+  <style>
+    .output {
+      font-size: 14rem;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
   <div class="words" contenteditable>
+    <div class="output"></div>
   </div>
 
 <script>
   window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = new SpeechRecognition();
 
+  let p = document.createElement('p');
+  const words = document.querySelector('.words');
+  const output = document.querySelector('.output');
+  words.appendChild(p);
 
+  recognition.start();
+
+  recognition.addEventListener('result', event => {
+    const transcript = Array.from(event.results).map(result => result[0].transcript).join('');
+    p.textContent = transcript;
+    console.log(transcript)
+    if (event.results[0].isFinal) {
+      p = document.createElement('p');
+      words.appendChild(p);
+
+      if (transcript.includes('Привет')) {
+        alert('И тебе привет!');
+      }
+      if (transcript.includes('Как тебя зовут')) {
+        alert('Меня зовут «Макбук Игоря»');
+      }
+      if (transcript.includes('Покажи фокус')) {
+        output.innerHTML = '🎩';
+        setTimeout(() => {
+          output.innerHTML = '🐰';
+        }, 1500);
+      }
+    }
+  });
+  recognition.addEventListener('end', recognition.start);
 </script>
 
 

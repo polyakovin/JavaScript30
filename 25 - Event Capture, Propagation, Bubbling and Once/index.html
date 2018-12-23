@@ -9,6 +9,7 @@
   <div class="one">
     <div class="two">
       <div class="three">
+        <button>Click!</button>
       </div>
     </div>
   </div>
@@ -39,7 +40,19 @@
 
 <button></button>
 <script>
+  const divs = document.querySelectorAll('div');
+  const button = document.querySelector('button');
 
+  divs.forEach(div => div.addEventListener('click', function(event) {
+    event.stopPropagation();
+    console.log(this.classList.value);
+  }));
+
+  button.addEventListener('click', () => {
+    console.log('Clicked!');
+  }, {
+    once: true
+  });
 </script>
 </body>
 </html>

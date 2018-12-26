@@ -21,6 +21,14 @@ h1 {
   margin-bottom: 0;
 }
 
+.btn {
+  text-align: center;
+}
+
+.btn button {
+  font-size: 2rem;
+}
+
 .score {
   background:rgba(255,255,255,0.2);
   padding:0 3rem;

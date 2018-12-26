@@ -5,70 +5,69 @@
   <title>Follow Along Nav</title>
 </head>
 <body>
-  <h2>Cool</h2>
   <nav class="top">
-    <div class="dropdownBackground">
+    <div class="dropdown-background">
       <span class="arrow"></span>
     </div>
 
     <ul class="cool">
       <li>
-        <a href="#">About Me</a>
+        <a href="#">Обо мне</a>
         <div class="dropdown dropdown1">
           <div class="bio">
-            <img src="https://logo.clearbit.com/wesbos.com">
-            <p>Wes Bos sure does love web development. He teaches things like JavaScript, CSS and BBQ. Wait. BBQ isn't part of web development. It should be though!</p>
+            <img src="https://odesk-prod-portraits.s3.amazonaws.com/Users:polyakovin:PortraitUrl_100?AWSAccessKeyId=AKIAIKIUKM3HBSWUGCNQ&Expires=2147483647&Signature=yYVmyDRKalGAccTVgLdhdv6HQ6M%3D&1544107104059029&1545825208300">
+            <p>Создаю веб-платформы и мобильные приложения любой сложности. Помимо этого веду заметки в интернете о веб-разработке, дизайне, прочитанных книгах, путешествиях, музыке, а также фоткаю и выкладываю в инстаграм странности, которые вижу вокруг.</p>
           </div>
         </div>
       </li>
       <li>
-        <a href="#">Courses</a>
+        <a href="#">Публикации</a>
         <ul class="dropdown courses">
           <li>
-            <span class="code">RFB</span>
-            <a href="https://ReactForBeginners.com">React For Beginners</a>
+            <a href="https://polyakovin.ru/">Портфолио</a>
           </li>
           <li>
-            <span class="code">ES6</span>
-            <a href="https://ES6.io">ES6 For Everyone</a>
+            <a href="https://github.com/polyakovin?tab=repositories">Прогерские проекты</a>
           </li>
           <li>
-            <span class="code">NODE</span>
-            <a href="https://LearnNode.com">Learn Node</a>
+            <a href="https://vk.com/ip.painter">Творческие проекты</a>
           </li>
           <li>
-            <span class="code">STPU</span>
-            <a href="https://SublimeTextBook.com">Sublime Text Power User</a>
+            <a href="https://vk.com/@igor.polyakov-moi-posty">Статьи</a>
           </li>
           <li>
-            <span class="code">WTF</span>
-            <a href="http://Flexbox.io">What The Flexbox?!</a>
+            <a href="https://vk.com/ip.biblioworm">Рецензии на книги</a>
           </li>
           <li>
-            <span class="code">GRID</span>
-            <a href="https://CSSGrid.io">CSS Grid</a>
+            <a href="https://vk.com/ip.journeys">Путешествия</a>
           </li>
           <li>
-            <span class="code">LRX</span>
-            <a href="http://LearnRedux.com">Learn Redux</a>
+            <a href="https://vk.com/ip.collections">Коллекции и выставки</a>
           </li>
           <li>
-            <span class="code">CLPU</span>
-            <a href="http://CommandLinePowerUser.com">Command Line Power User</a>
+            <a href="https://vk.com/ip.musician">Любимая музыка</a>
           </li>
           <li>
-            <span class="code">MMD</span>
-            <a href="http://MasteringMarkdown.com">Mastering Markdown</a>
+            <a href="https://www.instagram.com/polyakovin.sax/">Игра на саксофоне</a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/polyakovin.haha/">Херня повсеместно</a>
+          </li>
+          <li>
+            <a href="https://www.upwork.com/freelancers/~01441aed8ba96dbb6a">Профиль на UpWork</a>
+          </li>
+          <li>
+            <a href="https://youdo.com/u5077011">Профиль на YouDo</a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#">Other Links</a>
+        <a href="#">Как со мной связаться</a>
         <ul class="dropdown dropdown3">
-          <li><a class="button" href="http://twitter.com/wesbos">Twitter</a></li>
-          <li><a class="button" href="http://facebook.com/wesbos.developer">Facebook</a></li>
-          <li><a class="button" href="http://wesbos.com">Blog</a></li>
-          <li><a class="button" href="http://wesbos.com/courses">Course Catalog</a></li>
+          <li><a class="button" href="https://t.me/polyakovin">Telegram</a></li>
+          <li><a class="button" href="https://github.com/polyakovin">GitHub</a></li>
+          <li><a class="button" href="https://vk.com/igor.polyakov">ВКонтакте</a></li>
+          <li><a class="button" href="https://www.instagram.com/polyakovin/">Instagram</a></li>
         </ul>
       </li>
     </ul>
@@ -150,7 +149,7 @@
 
 
 
-  .dropdownBackground {
+  .dropdown-background {
     width:100px;
     height:100px;
     position: absolute;
@@ -164,7 +163,7 @@
     opacity:0;
   }
 
-  .dropdownBackground.open {
+  .dropdown-background.open {
     opacity: 1;
   }
 
@@ -213,14 +212,44 @@
     margin-bottom: 10px;
   }
 
-
-  /* Matches Twitter, TWITTER, twitter, tWitter, TWiTTeR... */
-  .button[href*=twitter] { background: #019FE9; }
-  .button[href*=facebook] { background: #3B5998; }
-  .button[href*=courses] { background: #ffc600; }
+  .button[href*=t] { background: #32afed; }
+  .button[href*=vk] { background: #2a5885; }
+  .button[href*=instagram] { background: #fff; color: #262626; border: 1px solid #262626; }
+  .button[href*=github] { background: #24292e; }
 </style>
 
 <script>
+  const triggers = document.querySelectorAll('.cool > li');
+  const background = document.querySelector('.dropdown-background');
+  const nav = document.querySelector('.top');
+
+  triggers.forEach(trigger => trigger.addEventListener('mouseenter', handleEnter));
+  triggers.forEach(trigger => trigger.addEventListener('mouseleave', handleLeave));
+
+  function handleEnter() {
+    this.classList.add('trigger-enter');
+    setTimeout(() => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150);
+    background.classList.add('open');
+
+    const dropdown = this.querySelector('.dropdown');
+    const dropdownCoords = dropdown.getBoundingClientRect();
+    const navCoords = nav.getBoundingClientRect();
+    const coords = {
+      width: dropdownCoords.width,
+      height: dropdownCoords.height,
+      left: dropdownCoords.left - navCoords.left,
+      top: dropdownCoords.top - navCoords.top
+    }
+
+    background.style.setProperty('width', `${coords.width}px`);
+    background.style.setProperty('height', `${coords.height}px`);
+    background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`);
+  }
+
+  function handleLeave() {
+    this.classList.remove('trigger-enter', 'trigger-enter-active');
+    background.classList.remove('open');
+  }
 </script>
 
 </body>

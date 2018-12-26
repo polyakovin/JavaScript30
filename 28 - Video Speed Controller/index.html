@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <div class="wrapper">
     <video class="flex" width="765" height="430" src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" loop controls></video>
     <div class="speed">
@@ -15,6 +14,23 @@
   </div>
 
 <script>
+  const speed = document.querySelector('.speed');
+  const bar = speed.querySelector('.speed-bar');
+  const video = document.querySelector('.flex');
+
+  speed.addEventListener('mousemove', changeSpeed);
+
+  function changeSpeed(e) {
+    const y = e.pageY - this.offsetTop;
+    const percent = y/this.offsetHeight;
+    const min = 0.4;
+    const max = 10;
+    const height = Math.round(percent*100) + '%';
+    const playbackRate = percent*(max - min) + min;
+    bar.style.height = height;
+    bar.textContent = playbackRate.toFixed(1) + 'x';
+    video.playbackRate = playbackRate;
+  }
 </script>
 </body>
 </html>

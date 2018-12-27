@@ -40,6 +40,7 @@
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
+  const gameLength = 20000;
   const levels = [
     {min: 1000, max: 2000},
     {min: 700, max: 1500},
@@ -59,12 +60,13 @@
   levelSelect.addEventListener('change', changeLevel);
 
   function launchGame() {
-    const gameLength = 10000;
     scoreBoard.textContent = score = 0;
     timeUp = false;
 
     showMole();
-    setTimeout(() => timeUp = true, gameLength);
+    setTimeout(() => {
+      timeUp = true;
+    }, gameLength);
   }
 
   function showMole() {
@@ -74,7 +76,11 @@
     hole.classList.add('up');
     setTimeout(() => {
       hole.classList.remove('up');
-      if (!timeUp) showMole();
+      if (!timeUp) {
+        showMole();
+      } else {
+        alert(`Игра окончена! Ты потратил ${parseInt(gameLength/1000)} секунд своей жизни, зато ублил целых ${score} кротов!`);
+      }
     }, time);
   }
 

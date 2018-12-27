@@ -10,6 +10,8 @@
 
   <h1>Убей кротов! <span class="score">0</span></h1>
   <div class="btn">
+    Уровень:
+    <select name="level" id="levelSelect"></select>
     <button onClick="launchGame()">Начать!</button>
   </div>
 
@@ -38,12 +40,23 @@
   const holes = document.querySelectorAll('.hole');
   const scoreBoard = document.querySelector('.score');
   const moles = document.querySelectorAll('.mole');
+  const levels = [
+    {min: 1000, max: 2000},
+    {min: 700, max: 1500},
+    {min: 500, max: 1200},
+    {min: 300, max: 1000},
+    {min: 200, max: 700},
+    {min: 100, max: 500},
+  ];
 
   let lastHole;
   let timeUp = false;
   let score = 0;
+  let level = 0;
 
   moles.forEach(mole => mole.addEventListener('click', bonk))
+  levelSelect.innerHTML = levels.map((level, i) => `<option value="${i}">${i}</option>`);
+  levelSelect.addEventListener('change', changeLevel);
 
   function launchGame() {
     const gameLength = 10000;
@@ -55,7 +68,7 @@
   }
 
   function showMole() {
-    const time = randomTime(500, 1200);
+    const time = randomTime(levels[level].min, levels[level].max);
     const hole = randomHole();
 
     hole.classList.add('up');
@@ -92,6 +105,10 @@
       scoreBoard.textContent = score;
       hole.classList.remove('up');
     }
+  }
+
+  function changeLevel(e) {
+    level = this.value;
   }
 </script>
 </body>

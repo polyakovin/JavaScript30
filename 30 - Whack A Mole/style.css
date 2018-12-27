@@ -23,10 +23,11 @@ h1 {
 
 .btn {
   text-align: center;
+  font-size: 2rem;
 }
 
 .btn button {
-  font-size: 2rem;
+  margin-left: 20px;
 }
 
 .score {
